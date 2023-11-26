@@ -1,0 +1,94 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Results</title>
+</head>
+<body>
+<?php
+$servername = "your_database_server";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+function displayFirstRankStudent($conn, $competitionName) {
+    $sql = "SELECT students.stud_id, students.name, students.class
+            FROM students
+            INNER JOIN student_competitions ON students.stud_id = student_competitions.stud_id
+            INNER JOIN competitions ON student_competitions.c_no = competitions.c_no
+            WHERE competitions.c_name = '$competitionName' AND student_competitions.rank = 1
+            LIMIT 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo "<h2>Student who secured 1st rank in $competitionName</h2>";
+        echo "<p>Student ID: {$row['stud_id']}</p>";
+        echo "<p>Name: {$row['name']}</p>";
+        echo "<p>Class: {$row['class']}</p>";
+    } else {
+        echo "No information found for the 1st rank in the specified competition.";
+    }
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $competitionName = $_POST["competitionName"];
+    displayFirstRankStudent($conn, $competitionName);
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="competitionName">Enter the name of the competition:</label>
+    <input type="text" name="competitionName" required>
+    <button type="submit">Display 1st Rank Student</button>
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+# Task a: Generate a random array of 50 integers and display them using a line chart, scatter plot, histogram, and box plot
+np.random.seed(42)  # Set seed for reproducibility
+random_array = np.random.randint(0, 100, size=50)
+# Line Chart
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_array, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Scatter Plot
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_array)), random_array, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Histogram
+plt.subplot(1, 4, 3)
+plt.hist(random_array, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# Box Plot
+plt.subplot(1, 4, 4)
+plt.boxplot(random_array, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+subject_names = ['Math', 'English', 'Science', 'History', 'Art']
+marks_obtained = [90, 85, 92, 78, 88]
+# Bar Chart
+plt.figure(figsize=(8, 6))
+plt.bar(subject_names, marks_obtained, color=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6'])
+plt.title('Marks Obtained in Subjects')
+plt.xlabel('Subjects')
+plt.ylabel('Marks')
+# Show the bar chart
+plt.show()
