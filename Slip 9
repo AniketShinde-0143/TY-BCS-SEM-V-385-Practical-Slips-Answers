@@ -1,0 +1,93 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html>
+<head>
+    <title>String Manipulation Form</title>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $inputString = $_POST["inputString"];
+    $selectedSeparator = $_POST["separator"];
+
+    // a. Split the string into separate words using the given separator
+    $words = explode($selectedSeparator, $inputString);
+
+    // b. Replace all occurrences of the separator in the given string with some other separator
+    $newSeparator = $_POST["newSeparator"];
+    $modifiedString = str_replace($selectedSeparator, $newSeparator, $inputString);
+
+    // c. Find the last word in the given string
+    $lastWord = end($words);
+    echo "<p>Original String: $inputString</p>";
+    echo "<p>Words after splitting with '$selectedSeparator': " . implode(", ", $words) . "</p>";
+    echo "<p>Modified String (separator replaced with '$newSeparator'): $modifiedString</p>";
+    echo "<p>Last Word in the String: $lastWord</p>";
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <label for="inputString">Enter a String:</label>
+    <input type="text" name="inputString" required>
+    <br><br>
+    <label for="separator">Choose a Separator:</label>
+    <select name="separator" required>
+        <option value="#">#</option>
+        <option value="1">1</option>
+        <option value="%">%</option>
+        <option value="@">@</option>
+        <option value="!">!</option>
+        <option value=",">,</option>
+    </select>
+    <br><br>
+    <label for="newSeparator">Choose a New Separator:</label>
+    <input type="text" name="newSeparator" required>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 2, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.subplot(1, 2, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.tight_layout()
+plt.show()
+
+Q. 3
+
+--> import matplotlib.pyplot as plt
+subjects = ['Math', 'English', 'Science', 'History']
+marks = [90, 85, 92, 88]
+plt.figure(figsize=(8, 8))
+plt.pie(marks, labels=subjects, autopct='%1.1f%%', startangle=90, colors=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0'])
+plt.title('Subject-wise Marks Distribution')
+plt.show()
+
+Q. 4 
+
+--> import pandas as pd
+# a) Describing the dataset
+# b) Shape of the dataset
+# Load the wine quality dataset from the CSV file
+data = pd.read_csv('winequality-red.csv') 
+print("a) Describing the dataset:")
+print(data.describe())
+print("\nb) Shape of the dataset:")
+print(data.shape)
+print("\nc) Display first 3 rows from the dataset:")
+print(data.head(3))
