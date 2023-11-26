@@ -1,0 +1,79 @@
+Q. 1
+
+--> <html Lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="uft-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="jumbotron text-center">
+<h1>My First Bootstrap Demo Page</h2>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+<h3>Personal Information</h3>
+<p> UMESH AHIRE</p>
+<p> NIRA</p>
+<p> 8788100181</p>
+</div>
+<div class="col-sm-4">
+<h3>Educational Information</h3>
+<p> Masters in Computer Science</p>
+<p> Someshwar Science College, Someshwarnagar </p>
+</div>
+<div class="col-sm-4">
+<h3>job profile</h3>
+<p>Software Developer</p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+plt.tight_layout()
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+data = pd.read_csv('SOCR-HeightWeight.csv')
+print("Shape of the dataset:", data.shape)
+print("Number of rows:", len(data))
+print("Number of columns:", len(data.columns))
+print("\nData types of each column:")
+print(data.dtypes)
+print("\nFeature names:")
+print(data.columns)
+print("\nDescription of the data:")
+print(data.describe())
