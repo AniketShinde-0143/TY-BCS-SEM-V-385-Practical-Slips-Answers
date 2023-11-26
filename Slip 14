@@ -1,0 +1,80 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Bootstrap Container with Row and Columns</title>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Column 1</h5>
+<p class="card-text">Content for the first column.</p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Column 2</h5>
+<p class="card-text">Content for the second column.</p>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Column 3</h5>
+<p class="card-text">Content for the third column.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script
+src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+# Create a flattened array
+flattened_array = np.array([1, 2, 3, 4, 5, 6])
+# Define weights
+weights = np.array([0.1, 0.2, 0.3, 0.2, 0.1, 0.1])
+# Compute the weighted average along the specified axis (in this case, axis=0)
+weighted_average = np.average(flattened_array, weights=weights)
+# Display the results
+print("Flattened array:")
+print(flattened_array)
+print("\nWeights:")
+print(weights)
+print("\nWeighted Average along axis 0:", weighted_average)
+
+Q. 3
+
+--> import pandas as pd
+# Load the advertising dataset from the CSV file
+advertising_data = pd.read_csv('Advertising.csv')
+# Display basic statistical details
+basic_stats = advertising_data.describe()
+# Display the first few rows of the dataset
+head_of_data = advertising_data.head()
+# Display basic information about the dataset
+info_of_data = advertising_data.info()
+print("Basic Statistical Details:")
+print(basic_stats)
+print("\nFirst Few Rows of the Dataset:")
+print(head_of_data)
+print("\nInformation about the Dataset:")
+print(info_of_data)
