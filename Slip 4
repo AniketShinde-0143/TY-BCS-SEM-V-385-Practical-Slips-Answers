@@ -1,0 +1,89 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>List of Books</title>
+<style>
+table{
+width:500px;
+} table,td,th{
+border:1px solid #000;
+border-collapse: collapse;
+} td,th{
+text-align:center;
+}
+</style>
+</head>
+<body>
+<table>
+<tr>
+<th colspan="4">List of Books</th>
+</tr>
+<tr>
+<th rowspan="2">Item No</th>
+<th rowspan="2">Item Name</th>
+<th colspan="2">Price</th>
+</tr>
+<tr>
+<th>Rs.</th>
+<th>Paise</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Programming in Python</td>
+<td>500</td>
+<td>50</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Programming in Java</td>
+<td>345</td>
+<td>00</td>
+</tr>
+</table>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+plt.tight_layout()
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+data = pd.read_csv('SOCR-HeightWeight.csv')
+print("Shape of the dataset:", data.shape)
+print("Number of rows:", len(data))
+print("Number of columns:", len(data.columns))
+print("\nData types of each column:")
+print(data.dtypes)
+print("\nFeature names:")
+print(data.columns)
+print("\nDescription of the data:")
+print(data.describe())
