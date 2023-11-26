@@ -1,0 +1,81 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Operations</title>
+</head>
+<body>
+<form action="operations.php" method="post">
+<label for="num1">Enter the first number:</label>
+<input type="text" name="num1" required>
+<br>
+<label for="num2">Enter the second number:</label>
+<input type="text" name="num2" required>
+<br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+operations.php
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$num1 = intval($_POST["num1"]);
+$num2 = intval($_POST["num2"]);
+// a. Find mod of the two numbers.
+function findMod($a, $b) {
+return $a % $b;
+}
+// b. Find the power of the first number raised to the second.
+function findPower($a, $b) {
+return pow($a, $b);
+}
+// c. Find the sum of the first n numbers (considering the first number as n).
+function findSum($n) {
+return ($n * ($n + 1)) / 2;
+}
+// d. Find the factorial of the second number.
+function findFactorial($num) {
+if ($num == 0 || $num == 1) {
+return 1;
+} else {
+return $num * findFactorial($num - 1);
+}
+}
+echo "a. Mod of $num1 and $num2: " . findMod($num1, $num2) . "<br>";
+echo "b. Power of $num1 raised to $num2: " . findPower($num1, $num2) . "<br>";
+echo "c. Sum of the first $num1 numbers: " . findSum($num1) . "<br>";
+echo "d. Factorial of $num2: " . findFactorial($num2);
+}
+?>
+
+Q. 2
+
+--> import pandas as pd
+data = pd.read_csv('SOCR-HeightWeight.csv')
+mean_values = data.mean()
+print("Column-wise Mean:")
+print(mean_values)
+median_values = data.median()
+print("\nColumn-wise Median:")
+print(median_values)
+
+Q. 3
+
+--> def manhattan_distance(point1, point2):
+    return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
+def sum_of_manhattan_distances(points):
+    n = len(points)
+    total_distance = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            total_distance += manhattan_distance(points[i], points[j])
+    return total_distance
+# Example usage:
+# Replace points_list with your list of points
+points_list = [(1, 2), (3, 4), (5, 6), (7, 8)]
+result = sum_of_manhattan_distances(points_list)
+print("Sum of Manhattan distances between all pairs of points:", result)
