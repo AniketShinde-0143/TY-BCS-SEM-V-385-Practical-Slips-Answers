@@ -1,0 +1,67 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Committee Status</title>
+</head>
+<body>
+<?php
+$servername = "your_database_server";
+$username = "your_username";
+$password = "your_password";
+$dbname = "event_management";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+function modifyCommitteeStatus($conn, $eventTitle) {
+    $sql = "UPDATE Committee
+            SET status = 'working'
+            WHERE cno IN (SELECT cno FROM Event_Committee WHERE eno IN (SELECT eno FROM Event WHERE title = '$eventTitle'))";
+    if ($conn->query($sql) === TRUE) {
+        echo "Committee status has been modified to 'working' for the event '$eventTitle'.";
+    } else {
+        echo "Error updating committee status: " . $conn->error;
+    }
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $eventTitle = $_POST["eventTitle"];
+    echo "<h2>Modify Committee Status</h2>";
+    modifyCommitteeStatus($conn, $eventTitle);
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="eventTitle">Enter the title of the event:</label>
+    <input type="text" name="eventTitle" required>
+    <button type="submit">Modify Committee Status</button>
+</form>
+</body>
+</html>
+
+Q. 2
+
+-->import pandas as pd
+from sklearn.preprocessing 
+import OneHotEncoder, LabelEncoder
+# Load the dataset from a CSV file
+df = pd.read_csv('Data.csv')
+# Display the original dataset
+print("Original Dataset:")
+print(df)
+# Task a: Apply OneHot encoding on the 'Country' column
+onehot_encoder = OneHotEncoder(sparse=False)
+country_encoded = pd.DataFrame(onehot_encoder.fit_transform(df[['Country']]))
+df_encoded = pd.concat([df, country_encoded], axis=1)
+df_encoded.drop('Country', axis=1, inplace=True)
+# Display the dataset after OneHot encoding
+print("\nDataset after OneHot encoding on 'Country' column:")
+print(df_encoded)
+# Task b: Apply Label encoding on the 'Purchased' column
+label_encoder = LabelEncoder()
+df_encoded['Purchased'] = label_encoder.fit_transform(df_encoded['Purchased'])
+# Display the dataset after Label encoding
+print("\nDataset after Label encoding on 'Purchased' column:")
+print(df_encoded)
