@@ -1,0 +1,98 @@
+Q. 1
+
+--> <html>
+<body>
+<form action="slip-18a.php" method="get">
+<center>
+<h3><input type="radio" name="op" value="1">Reverse the order of each elt's key-value
+pair.</h3>
+<h3><input type="radio" name="op" value="2">Traverse the elements in array in random
+order.</h3>
+<h3><input type="radio" name="op" value="3">Convert the array elements into individual
+variables.</h3>
+<h3><input type="radio" name="op" value="4">Display the elements of an array along with
+key.</h3>
+<input type="submit" value="Submit">
+</center>
+</form>
+</body>
+</html>
+
+<?php
+$op = $_GET['op'];
+$input = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+switch($op)
+{
+case 1 : echo "Original Array:<br>";
+print_r($input);
+echo "<br><br>Reverse the order of each element’s key-value
+pair:<br>";
+$flipped = array_flip($input);
+print_r($flipped);
+break;
+case 2 : echo "Original Array:<br>";
+print_r($input);
+echo "<br><br>Traverse the element in an array in random
+order:<br>";
+shuffle($input);
+print_r($input);
+break;
+case 3 : echo "Original Array:<br>";
+print_r($input);
+echo "<br><br>Converted the array elements into individual
+variables:<br>";
+extract($input);
+echo "\$Peter = $Peter; \$Ben = $Ben; \$Joe = $Joe";
+break;
+case 4 : echo "Original Array:<br>";
+print_r($input);
+echo "<br><br>Display the elements of an array along with key:<br>";
+foreach($input as $key=>$value)
+{
+echo"key:$key val:$value.<br>";
+}
+}
+?>
+
+Q. 2
+
+--> import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+# Load the Iris dataset from a CSV file
+iris = pd.read_csv('Iris.csv')
+# Create box plots for each feature across the three species
+plt.figure(figsize=(12, 8))
+
+plt.subplot(2, 2, 1)
+sns.boxplot(x='Species', y='SepalLengthCm', data=iris)
+plt.title('Sepal Length Distribution Across Species')
+
+plt.subplot(2, 2, 2)
+sns.boxplot(x='Species', y='SepalWidthCm', data=iris)
+plt.title('Sepal Width Distribution Across Species')
+
+plt.subplot(2, 2, 3)
+sns.boxplot(x='Species', y='PetalLengthCm', data=iris)
+plt.title('Petal Length Distribution Across Species')
+
+plt.subplot(2, 2, 4)
+sns.boxplot(x='Species', y='PetalWidthCm', data=iris)
+plt.title('Petal Width Distribution Across Species')
+
+plt.tight_layout()
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+heights_weights_df = pd.read_csv('SOCR-HeightWeight.csv')
+# Display the first 5 rows
+print("First 5 Rows:")
+print(heights_weights_df.head())
+# Display the last 5 rows
+print("\nLast 5 Rows:")
+print(heights_weights_df.tail())
+# Display random 10 rows
+print("\nRandom 10 Rows:")
+print(heights_weights_df.sample(10))
