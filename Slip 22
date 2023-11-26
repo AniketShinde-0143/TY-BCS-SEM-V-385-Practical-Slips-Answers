@@ -1,0 +1,98 @@
+Q. 1
+
+--> <?php
+class Queue {
+    private $queue = array();
+    public function enqueue($element) {
+        array_push($this->queue, $element);
+        echo "$element has been inserted into the queue.\n";
+    }
+    public function dequeue() {
+        if (empty($this->queue)) {
+            echo "Queue is empty. Cannot dequeue.\n";
+        } else {
+            $element = array_shift($this->queue);
+            echo "$element has been dequeued.\n";
+        }
+    }
+    public function displayQueue() {
+        if (empty($this->queue)) {
+            echo "Queue is empty.\n";
+        } else {
+            echo "Queue Contents: " . implode(', ', $this->queue) . "\n";
+        }
+    }
+}
+
+$queue = new Queue();
+while (true) {
+    echo "\nQueue Operations:\n";
+    echo "a) Insert an element in queue\n";
+    echo "b) Delete an element from queue\n";
+    echo "c) Display the contents of queue\n";
+    echo "d) Quit\n";
+
+    $choice = readline("Enter your choice (a/b/c/d): ");
+
+    switch ($choice) {
+        case 'a':
+            $element = readline("Enter the element to insert: ");
+            $queue->enqueue($element);
+            break;
+
+        case 'b':
+            $queue->dequeue();
+            break;
+
+        case 'c':
+            $queue->displayQueue();
+            break;
+
+        case 'd':
+            echo "Exiting the program.\n";
+            exit;
+
+        default:
+            echo "Invalid choice. Please enter a valid option.\n";
+    }
+}
+?>
+
+Q. 2
+
+--> import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Normalizer
+
+# Load the wine quality dataset from a CSV file
+wine_data = pd.read_csv('winequality-red.csv')
+
+# Extract the features (excluding the target variable 'quality')
+features = wine_data.drop('quality', axis=1)
+
+# Task a: Rescaling using MinMaxScaler
+min_max_scaler = MinMaxScaler()
+rescaled_data = min_max_scaler.fit_transform(features)
+rescaled_df = pd.DataFrame(rescaled_data, columns=features.columns)
+
+# Task b: Standardizing using StandardScaler
+standard_scaler = StandardScaler()
+standardized_data = standard_scaler.fit_transform(features)
+standardized_df = pd.DataFrame(standardized_data, columns=features.columns)
+
+# Task c: Normalizing using Normalizer
+normalizer = Normalizer()
+normalized_data = normalizer.fit_transform(features)
+normalized_df = pd.DataFrame(normalized_data, columns=features.columns)
+
+# Displaying the results
+print("Original Data:")
+print(features.head())
+
+print("\nRescaled Data:")
+print(rescaled_df.head())
+
+print("\nStandardized Data:")
+print(standardized_df.head())
+
+print("\nNormalized Data:")
+print(normalized_df.head())
