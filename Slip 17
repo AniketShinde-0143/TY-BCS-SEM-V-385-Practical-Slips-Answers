@@ -1,0 +1,54 @@
+Q. 1
+
+--> <?php
+$marks = array("Sagar" => "31", "Vicky" => "41", "Leena" => "39", "Ramesh" => "40");
+// a) Ascending order sort by Value
+asort($marks);
+echo "a) Ascending order sort by Value: <pre>";
+print_r($marks);
+echo "</pre>";
+// b) Ascending order sort by Key
+ksort($marks);
+echo "b) Ascending order sort by Key: <pre>";
+print_r($marks);
+echo "</pre>";
+// c) Descending order sorting by Value
+arsort($marks);
+echo "c) Descending order sorting by Value: <pre>";
+print_r($marks);
+echo "</pre>";
+// d) Descending order sorting by Key
+krsort($marks);
+echo "d) Descending order sorting by Key: <pre>";
+print_r($marks);
+echo "</pre>";
+?>
+
+Q. 2
+
+--> import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+# Load the Iris dataset from the seaborn library
+iris = sns.load_dataset('iris')
+# Scatter plot comparing two features (e.g., sepal length and sepal width)
+sns.scatterplot(x='sepal_length', y='sepal_width', hue='species', data=iris)
+plt.title('Scatter Plot of Sepal Length vs Sepal Width')
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Sepal Width (cm)')
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+# Create a DataFrame
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Helen', 'Ivy', 'Jack'],
+    'age': [25, 30, 35, 28, 22, 40, 32, 27, 29, 33],
+    'salary': [60000, 70000, 80000, 75000, 55000, 90000, 85000, 65000, 70000, 95000],
+    'department': ['HR', 'IT', 'Finance', 'IT', 'HR', 'Finance', 'IT', 'Finance', 'HR', 'IT']
+}
+df = pd.DataFrame(data)
+# View the DataFrame
+print("Data Frame:")
+print(df)
