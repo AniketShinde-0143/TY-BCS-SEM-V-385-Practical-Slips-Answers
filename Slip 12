@@ -1,0 +1,132 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Calculator</title>
+</head>
+<body>
+<?php
+require 'calculator_functions.php';
+$num1 = isset($_POST['num1']) ? $_POST['num1'] : '';
+$num2 = isset($_POST['num2']) ? $_POST['num2'] : '';
+$operation = isset($_POST['operation']) ? $_POST['operation'] : '';
+$result = '';
+if (isset($_POST['submit'])) {
+if (!is_numeric($num1) || !is_numeric($num2)) {
+$result = 'Please enter valid numbers.';
+} else {
+switch ($operation) {
+case 'add':
+$result = add($num1, $num2);
+break;
+case 'subtract':
+$result = subtract($num1, $num2);
+break;
+case 'multiply':
+$result = multiply($num1, $num2);
+break;
+case 'divide':
+if ($num2 == 0) {
+$result = 'Cannot divide by zero.';
+} else {
+$result = divide($num1, $num2);
+}
+break;
+default:
+$result = 'Please select an operation.';
+break;
+}
+}
+}
+?>
+<form action="" method="post">
+<label for="num1">Number 1:</label>
+<input type="text" name="num1" value="<?php echo $num1; ?>" required>
+<br>
+<label for="num2">Number 2:</label>
+<input type="text" name="num2" value="<?php echo $num2; ?>" required>
+<br>
+<label>Operation:</label>
+<br>
+<input type="radio" name="operation" value="add" <?php echo ($operation == 'add') ?
+'checked' : ''; ?>> Add
+<input type="radio" name="operation" value="subtract" <?php echo ($operation == 'subtract')
+? 'checked' : ''; ?>> Subtract
+<input type="radio" name="operation" value="multiply" <?php echo ($operation == 'multiply')
+? 'checked' : ''; ?>> Multiply
+<input type="radio" name="operation" value="divide" <?php echo ($operation == 'divide') ?
+'checked' : ''; ?>> Divide
+<br>
+<input type="submit" name="submit" value="Calculate">
+</form>
+<?php
+if ($result !== '') {
+echo '<br><strong>Result:</strong> ' . $result;
+}
+?>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+# Plotting a Line Chart
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Scatter Plot
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Histogram
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# Plotting a Box Plot
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+import numpy as np
+# Create a DataFrame with columns: 'name', 'salary', 'department'
+data = {'name': ['John', 'Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Helen', 'Ivy'],
+        'salary': [50000, 60000, np.nan, 75000, 80000, 90000, 70000, np.nan, 85000, 95000],
+        'department': ['HR', 'IT', 'Finance', 'IT', 'Finance', 'HR', 'IT', 'Finance', np.nan, 'IT']}
+
+df = pd.DataFrame(data)
+# Add some missing and duplicate values
+df.loc[10] = ['John', np.nan, 'HR']
+df.loc[11] = ['Linda', 70000, 'Finance']
+df.loc[12] = ['Eva', 90000, 'HR']
+df.loc[13] = [np.nan, 80000, 'IT']
+df.loc[14] = ['Frank', 70000, 'Finance']
+df.loc[15] = ['Grace', 85000, 'Finance']
+df.loc[16] = [np.nan, np.nan, np.nan]  # Adding a row with all null values
+# Display the original DataFrame
+print("Original DataFrame:")
+print(df)
+# Drop null and empty values
+df_cleaned = df.dropna()
+# Display the modified DataFrame
+print("\nDataFrame after dropping null and empty values:")
+print(df_cleaned)
