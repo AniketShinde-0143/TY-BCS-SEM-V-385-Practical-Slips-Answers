@@ -1,0 +1,63 @@
+Q. 1
+
+--> <html>
+<body>
+<form action="slip-28a.php" method="POST">
+Enter First File:<input type="text" name="first"><br><br>
+Enter Second File:<input type="text" name="second"><br><br>
+<input type="submit">
+</form>
+</body>
+</html>
+slip-28a.php
+<?php
+$first=$_POST['first'];
+$second=$_POST['second'];
+if(!file_exists($first))
+{
+die("<br>$first does not exist");
+} if(!file_exists($second))
+{
+die("<br>$second does not exist");
+}
+$fp1=fopen($first,'r') or die("unable to open first file");
+$fp2=fopen($second,'a') or die("unable to open second file");
+$data=fread($fp1,filesize($first));
+fwrite($fp2,$data);
+fclose($fp1);
+fclose($fp2);
+echo "<h2>Contents of first file is appanded to second file</h2>";
+?>
+
+Q. 2
+
+--> import pandas as pd
+import numpy as np
+# Task 1: Create a DataFrame with columns name, age, and percentage, add 10 rows, and view the DataFrame
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Helen', 'Ivy', 'Jack'],
+    'age': [25, 30, 35, 28, 22, 40, 32, 27, 29, 33],
+    'percentage': [75.5, 82.3, 90.0, 88.7, 78.2, 95.5, 87.0, 79.8, 92.1, 88.3]
+}
+df = pd.DataFrame(data)
+# View the DataFrame
+print("Task 1: DataFrame with 10 rows:")
+print(df)
+# Task 2: Print the shape, number of rows-columns, data types, feature names, and the description of the data
+print("\nTask 2: DataFrame Information:")
+print("Shape:", df.shape)
+print("Number of Rows-Columns:", df.shape[0], "-", df.shape[1])
+print("\nData Types:")
+print(df.dtypes)
+print("\nFeature Names:")
+print(df.columns)
+print("\nDescription of the Data:")
+print(df.describe())
+# Task 3: View basic statistical details of the data
+print("\nTask 3: Basic Statistical Details of the Data:")
+print(df.describe())
+# Task 4: Add 5 rows with duplicate values and missing values, add a column 'remarks' with empty values, and display the data
+df = pd.concat([df, df.sample(5, replace=True), df.sample(5, replace=True)], ignore_index=True)
+df['remarks'] = np.nan
+print("\nTask 4: DataFrame after adding duplicate and missing values:")
+print(df)
