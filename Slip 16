@@ -1,0 +1,113 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Result</title>
+<style>
+table {
+border-collapse: collapse;
+margin: 20px auto;
+}
+table, th, td {
+border: 1px solid black;
+}
+th, td {
+padding: 10px;
+text-align: center;
+}
+</style>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$marks = $_POST['marks'];
+$totalMarks = array_sum($marks);
+$percentage = ($totalMarks / (count($marks) * 100)) * 100;
+$grade = '';
+if ($percentage >= 90) {
+$grade = 'A';
+} elseif ($percentage >= 80) {
+$grade = 'B';
+} elseif ($percentage >= 70) {
+$grade = 'C';
+} elseif ($percentage >= 60) {
+$grade = 'D';
+} else {
+$grade = 'F';
+}
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<label for="marks">Enter Marks for 5 Subjects:</label>
+<br>
+<?php
+for ($i = 1; $i <= 5; $i++) {
+echo '<input type="text" name="marks[]" placeholder="Subject ' . $i . '" required>';
+if ($i < 5) {
+echo '<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>';
+}
+}
+?>
+<br><br>
+<input type="submit" value="Calculate Result">
+</form>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+echo '<h2>Result:</h2>';
+echo '<table>';
+echo '<tr><th>Serial Number</th><th>Subject Name</th><th>Marks</th></tr>';
+for ($i = 0; $i < count($marks); $i++) {
+$serialNumber = $i + 1;
+$subjectName = 'Subject ' . $serialNumber;
+echo '<tr><td>' . $serialNumber . '</td><td>' . $subjectName . '</td><td>' . $marks[$i] .'</td></tr>';
+}
+echo '<tr><td colspan="3"><strong>Total Marks:</strong> ' . $totalMarks . '</td></tr>';
+echo '<tr><td colspan="3"><strong>Percentage:</strong> ' . number_format($percentage, 2). '%</td></tr>';
+echo '<tr><td colspan="3"><strong>Grade:</strong> ' . $grade . '</td></tr>';
+echo '</table>';
+}
+?>
+</body>
+</html>
+
+Q. 2
+
+--> subjects = ['Math', 'English', 'Science', 'History']
+marks = [90, 85, 92, 88]
+# Plotting a Pie chart
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.pie(marks, labels=subjects, autopct='%1.1f%%', startangle=90, colors=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0'])
+plt.title('Subject-wise Marks Distribution (Pie Chart)')
+# Plotting a Bar chart
+plt.subplot(1, 2, 2)
+plt.bar(subjects, marks, color=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0'])
+plt.title('Subject-wise Marks Distribution (Bar Chart)')
+plt.xlabel('Subjects')
+plt.ylabel('Marks')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+# Create a DataFrame for students' information
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'GraduationPercentage': [75.5, 82.3, 90.0, 88.7, 78.2],
+    'Age': [21, 22, 23, 22, 24]
+}
+students_df = pd.DataFrame(data)
+# Display the DataFrame
+print("Students' Information:")
+print(students_df)
+# Calculate and display average age and average graduation percentage
+average_age = students_df['Age'].mean()
+average_percentage = students_df['GraduationPercentage'].mean()
+print("\nAverage Age of Students:", average_age)
+print("Average Graduation Percentage of Students:", average_percentage)
