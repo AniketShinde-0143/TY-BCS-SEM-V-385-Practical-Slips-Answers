@@ -1,0 +1,109 @@
+Q. 1
+
+--> <?php
+$servername = "your_database_server";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+function printDoctorsVisitingHospital($conn, $hospitalName) {
+    $sql = "SELECT doctors.doc_no, doctors.dname, doctors.address, doctors.city, doctors.area
+            FROM doctors
+            INNER JOIN hospitals ON doctors.hosp_no = hospitals.hosp_no
+            WHERE hospitals.hname = '$hospitalName'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>
+                <tr>
+                    <th>Doctor No</th>
+                    <th>Doctor Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Area</th>
+                </tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>{$row['doc_no']}</td>
+                    <td>{$row['dname']}</td>
+                    <td>{$row['address']}</td>
+                    <td>{$row['city']}</td>
+                    <td>{$row['area']}</td>
+                </tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "No doctors found for the specified hospital.";
+    }
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $hospitalName = $_POST["hospitalName"];
+    echo "<h2>Doctors Visiting $hospitalName</h2>";
+    printDoctorsVisitingHospital($conn, $hospitalName);
+}
+$conn->close();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Information</title>
+</head>
+<body>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="hospitalName">Enter Hospital Name:</label>
+    <input type="text" name="hospitalName" required>
+    <button type="submit">Search Doctors</button>
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+# Generate a random array of 50 integers
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+# Plotting a Line Chart
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Scatter Plot
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Histogram
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# Plotting a Box Plot
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+
+Q. 3
+
+--> import matplotlib.pyplot as plt
+# Sample data
+subject_names = ['Math', 'English', 'Science', 'History', 'Art']
+marks_obtained = [90, 85, 92, 78, 88]
+# Plotting a Pie Chart
+plt.figure(figsize=(8, 8))
+plt.pie(marks_obtained, labels=subject_names, autopct='%1.1f%%', startangle=140, colors=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6'])
+plt.title('Marks Obtained in Subjects')
+plt.show()
