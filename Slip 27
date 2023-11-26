@@ -1,0 +1,63 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy File Content</title>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $sourceFileName = $_POST["sourceFileName"];
+    $destinationFileName = $_POST["destinationFileName"];
+    if (!empty($sourceFileName) && !empty($destinationFileName)) {
+        if (file_exists($sourceFileName)) {
+            $contentToCopy = file_get_contents($sourceFileName);
+            file_put_contents($destinationFileName, $contentToCopy);
+            echo "Content from '{$sourceFileName}' has been copied to '{$destinationFileName}'.";
+        } else {
+            echo "Error: The source file '{$sourceFileName}' does not exist.";
+        }
+    } else {
+        echo "Error: Please provide both file names.";
+    }
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="sourceFileName">Enter the name of the source file:</label>
+    <input type="text" name="sourceFileName" required>
+    <br>
+    <label for="destinationFileName">Enter the name of the destination file:</label>
+    <input type="text" name="destinationFileName" required>
+    <br>
+    <button type="submit">Copy Content</button>
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import pandas as pd
+from sklearn.preprocessing 
+import OneHotEncoder, LabelEncoder
+# Load the dataset from a CSV file
+df = pd.read_csv('Data.csv')
+# Display the original dataset
+print("Original Dataset:")
+print(df)
+# Task a: Apply OneHot encoding on the 'Country' column
+onehot_encoder = OneHotEncoder(sparse=False)
+country_encoded = pd.DataFrame(onehot_encoder.fit_transform(df[['Country']]))
+df_encoded = pd.concat([df, country_encoded], axis=1)
+df_encoded.drop('Country', axis=1, inplace=True)
+# Display the dataset after OneHot encoding
+print("\nDataset after OneHot encoding on 'Country' column:")
+print(df_encoded)
+# Task b: Apply Label encoding on the 'Purchased' column
+label_encoder = LabelEncoder()
+df_encoded['Purchased'] = label_encoder.fit_transform(df_encoded['Purchased'])
+# Display the dataset after Label encoding
+print("\nDataset after Label encoding on 'Purchased' column:")
+print(df_encoded)
