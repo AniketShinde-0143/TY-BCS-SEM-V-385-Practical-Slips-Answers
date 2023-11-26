@@ -1,0 +1,77 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html>
+<head>
+    <title>String Operations Form</title>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get user input
+    $inputString = $_POST["inputString"];
+
+    // a. To select the first 5 words from the string
+    $words = str_word_count($inputString, 1);
+    $first5Words = implode(' ', array_slice($words, 0, 5));
+
+    // b. Convert the given string to lowercase and then to Title case
+    $lowercaseString = strtolower($inputString);
+    $titleCaseString = ucwords($lowercaseString);
+
+    // c. Pad the given string with "*" from left and right both sides
+    $paddedString = '*' . $inputString . '*';
+
+    // d. Remove leading whitespaces from the given string
+    $trimmedString = ltrim($inputString);
+
+    // e. Find the reverse of the given string
+    $reverseString = strrev($inputString);
+
+    // Display results
+    echo "<p>Original String: $inputString</p>";
+    echo "<p>a. First 5 words: $first5Words</p>";
+    echo "<p>b. Title Case: $titleCaseString</p>";
+    echo "<p>c. Padded String: $paddedString</p>";
+    echo "<p>d. String without leading whitespaces: $trimmedString</p>";
+    echo "<p>e. Reverse of the String: $reverseString</p>";
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <label for="inputString">Enter a String:</label>
+    <input type="text" name="inputString" required>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import pandas as pd
+import numpy as np
+# Task 1: Create a DataFrame with columns name, age, and percentage, add 10 rows, and view the DataFrame
+data = {
+    'name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Helen', 'Ivy', 'Jack'],
+    'age': [25, 30, 35, 28, 22, 40, 32, 27, 29, 33],
+    'percentage': [75.5, 82.3, 90.0, 88.7, 78.2, 95.5, 87.0, 79.8, 92.1, 88.3]
+}
+df = pd.DataFrame(data)
+# View the DataFrame
+print("Task 1: DataFrame with 10 rows:")
+print(df)
+# Task 2: Print the shape, number of rows-columns, data types, feature names, and the description of the data
+print("\nTask 2: DataFrame Information:")
+print("Shape:", df.shape)
+print("Number of Rows-Columns:", df.shape[0], "-", df.shape[1])
+print("\nData Types:")
+print(df.dtypes)
+print("\nFeature Names:")
+print(df.columns)
+print("\nDescription of the Data:")
+print(df.describe())
+# Task 3: Add 5 rows with duplicate values and missing values, add a column 'remarks' with empty values, and display the data
+df = pd.concat([df, df.sample(5, replace=True), df.sample(5, replace=True)], ignore_index=True)
+df['remarks'] = np.nan
+print("\nTask 3: DataFrame after adding duplicate and missing values:")
+print(df)
