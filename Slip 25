@@ -1,0 +1,100 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Operations</title>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $filename = $_POST["filename"];
+    if (!empty($filename)) {
+        if (file_exists($filename)) {
+            // a) Display type of file
+            $fileType = mime_content_type($filename);
+            echo "File Type: {$fileType}<br>";
+            // b) Display last modification time of the file
+            $lastModifiedTime = filemtime($filename);
+            echo "Last Modification Time: " . date("F d Y H:i:s.", $lastModifiedTime) . "<br>";
+            // c) Display the size of the file
+            $fileSize = filesize($filename);
+            echo "File Size: {$fileSize} bytes<br>";
+        } else {
+            echo "Error: The file '{$filename}' does not exist.<br>";
+        }
+    } else {
+        echo "Error: Please provide a filename.<br>";
+    }
+    // d) Delete the file
+    if (isset($_POST['deleteFile'])) {
+        if (file_exists($filename)) {
+            unlink($filename);
+            echo "File '{$filename}' has been deleted.<br>";
+        } else {
+            echo "Error: The file '{$filename}' does not exist. Cannot delete.<br>";
+        }
+    }
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="filename">Enter the name of the file:</label>
+    <input type="text" name="filename" required>
+    <br>
+    <button type="submit">Perform File Operations</button>
+</form>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <input type="hidden" name="filename" value="<?php echo $filename; ?>">
+    <button type="submit" name="deleteFile">Delete File</button>
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+# Generate a random array of 50 integers
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+# Plotting a Line Chart
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Scatter Plot
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Histogram
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# Plotting a Box Plot
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+
+Q. 3
+
+--> import matplotlib.pyplot as plt
+# Sample data
+subject_names = ['Math', 'English', 'Science', 'History', 'Art']
+marks_obtained = [90, 85, 92, 78, 88]
+# Plotting a Pie Chart
+plt.figure(figsize=(8, 8))
+plt.pie(marks_obtained, labels=subject_names, autopct='%1.1f%%', startangle=140, colors=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0', '#ffb3e6'])
+plt.title('Marks Obtained in Subjects')
+plt.show()
