@@ -1,0 +1,66 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>About Company</title>
+<style>
+h1{
+font-size:50px;
+background-color:green;
+text-align:center;
+color:red;
+font-family: "comic sans ms";
+}
+p{ color:blue;
+}
+</style>
+</head>
+<body>
+<h1>ABC Company</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</body>
+</html>
+
+Q. 2
+
+--> import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+Iris_data = pd.read_csv('Iris.csv')
+print(df.head(2))
+sns.set(style="whitegrid")
+plt.figure(figsize=(16, 8))
+plt.subplot(2, 2, 1)
+sns.boxplot(x='Species', y='SepalLengthCm', data=Iris_data)
+plt.title('Sepal Length Distribution Across Species')
+plt.subplot(2, 2, 2)
+sns.boxplot(x='Species', y='SepalWidthCm', data=Iris_data)
+plt.title('Sepal Width Distribution Across Species')
+plt.subplot(2, 2, 3)
+sns.boxplot(x='Species', y='PetalLengthCm', data=Iris_data)
+plt.title('Petal Length Distribution Across Species')
+plt.subplot(2, 2, 4)
+sns.boxplot(x='Species', y='PetalWidthCm', data=Iris_data)
+plt.title('Petal Width Distribution Across Species')
+plt.tight_layout()
+plt.show()
+
+Q. 3
+
+--> import pandas as pd
+data = pd.read_csv('SOCR-HeightWeight.csv')
+basic_stats = data.describe()
+head_of_data = data.head()
+info_of_data = data.info()
+print("Basic Statistical Details:")
+print(basic_stats)
+print("\nFirst Few Rows of the Dataset:")
+print(head_of_data)
+print("\nInformation about the Dataset:")
+print(info_of_data)
