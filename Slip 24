@@ -1,0 +1,84 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Append File Content</title>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstFileName = $_POST["firstFileName"];
+    $secondFileName = $_POST["secondFileName"];
+    if (!empty($firstFileName) && !empty($secondFileName)) {
+        if (file_exists($firstFileName)) {
+            $contentToAppend = file_get_contents($firstFileName);
+            file_put_contents($secondFileName, $contentToAppend, FILE_APPEND);
+            echo "Content from '{$firstFileName}' has been appended to '{$secondFileName}'.";
+        } else {
+            echo "Error: The first file '{$firstFileName}' does not exist.";
+        }
+    } else {
+        echo "Error: Please provide both file names.";
+    }
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="firstFileName">Enter the name of the first file:</label>
+    <input type="text" name="firstFileName" required>
+    <br>
+    <label for="secondFileName">Enter the name of the second file:</label>
+    <input type="text" name="secondFileName" required>
+    <br>
+    <button type="submit">Append Content</button>
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+# Load the Iris dataset from a CSV file
+iris = pd.read_csv('Iris.csv')
+# Plotting a Bar Plot for Species Frequency
+plt.figure(figsize=(8, 6))
+sns.countplot(x='Species', data=iris, palette='viridis')
+plt.title('Frequency of Iris Species')
+plt.xlabel('Species')
+plt.ylabel('Frequency')
+# Show the plot
+plt.show()
+
+Q. 3
+
+--> import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+# Load the Iris dataset from a CSV file
+iris = pd.read_csv('iris.csv')
+# Plotting Histograms for Each Species
+plt.figure(figsize=(12, 6))
+# Sepal Length
+plt.subplot(2, 2, 1)
+sns.histplot(data=iris, x='SepalLengthCm', hue='Species', kde=True, palette='Set2')
+plt.title('Sepal Length Distribution')
+# Sepal Width
+plt.subplot(2, 2, 2)
+sns.histplot(data=iris, x='SepalWidthCm', hue='Species', kde=True, palette='Set2')
+plt.title('Sepal Width Distribution')
+# Petal Length
+plt.subplot(2, 2, 3)
+sns.histplot(data=iris, x='PetalLengthCm', hue='Species', kde=True, palette='Set2')
+plt.title('Petal Length Distribution')
+# Petal Width
+plt.subplot(2, 2, 4)
+sns.histplot(data=iris, x='PetalWidthCm', hue='Species', kde=True, palette='Set2')
+plt.title('Petal Width Distribution')
+# Adjust layout
+plt.tight_layout()
+# Show the plot
+plt.show()
