@@ -1,0 +1,62 @@
+Q. 1
+
+--> <html>
+<head>
+<style>
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: darkgray;
+}
+li {
+float: left;
+Margin-right:20px;
+}
+li a {
+display: block;
+color: blue;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+li a:hover:not(.active) {
+background-color: black;
+}
+. active {
+Color:white;
+background-color : gray;
+}
+</style>
+</head>
+<body>
+<ul>
+<li><a class="active" href=>Home</a></li>
+<li><a href=>Java</a></li>
+<li><a href=>HTML</a></li>
+<li><a href=>CSS</a></li>
+</ul>
+</body>
+</html>
+
+Q. 2
+
+--> import pandas as pd
+from sklearn.preprocessing 
+import OneHotEncoder, LabelEncoder
+data = pd.read_csv('Data.csv')
+print("Dataset Before Encoding:")
+print(data)
+# a. Apply OneHot encoding on the 'Country' column
+country_encoder = OneHotEncoder(sparse=False, drop='first')  # Drop the first column to avoid multicollinearity
+country_encoded = pd.DataFrame(country_encoder.fit_transform(data[['Country']]))
+data = pd.concat([data, country_encoded], axis=1)
+data.drop('Country', axis=1, inplace=True)
+# b. Apply Label encoding on the 'Purchased' column
+label_encoder = LabelEncoder()
+data['Purchased'] = label_encoder.fit_transform(data['Purchased'])
+print("\nDataset After Encoding:")
+print(data)
+data.to_csv('Encoded_Data.csv', index=False)
+print("\nModified dataset saved to 'Encoded_Data.csv'")
