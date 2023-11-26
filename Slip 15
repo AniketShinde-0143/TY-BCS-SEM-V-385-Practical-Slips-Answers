@@ -1,0 +1,93 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html>
+<head>
+    <title>String Operations Form</title>
+</head>
+<body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $inputString = $_POST["inputString"];
+
+    // a. To select first 5 words from the string
+    $words = explode(' ', $inputString);
+    $first5Words = implode(' ', array_slice($words, 0, 5));
+
+    // b. Convert the given string to lowercase and then to Title case
+    $lowercaseString = strtolower($inputString);
+    $titleCaseString = ucwords($lowercaseString);
+
+    // c. Pad the given string with "*" from left and right both sides
+    $paddedString = '*' . $inputString . '*';
+
+    // d. Remove the leading whitespaces from the given string
+    $trimmedString = ltrim($inputString);
+
+    // e. Find the reverse of the given string
+    $reverseString = strrev($inputString);
+
+    // Display results
+    echo "<p>Original String: $inputString</p>";
+    echo "<p>a. First 5 words: $first5Words</p>";
+    echo "<p>b. Title Case: $titleCaseString</p>";
+    echo "<p>c. Padded String: $paddedString</p>";
+    echo "<p>d. String without leading whitespaces: $trimmedString</p>";
+    echo "<p>e. Reverse of the String: $reverseString</p>";
+}
+?>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <label for="inputString">Enter a String:</label>
+    <input type="text" name="inputString" required>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+# Generate a random array of 50 integers
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+# Plotting a Line Chart
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Scatter Plot
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Histogram
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# Plotting a Box Plot
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+
+Q. 3
+
+--> import matplotlib.pyplot as plt
+# Sample data (replace with your actual data)
+subjects = ['Math', 'English', 'Science', 'History']
+marks = [90, 85, 92, 88]
+# Plotting a Pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(marks, labels=subjects, autopct='%1.1f%%', startangle=90, colors=['#66b3ff', '#99ff99', '#ffcc99', '#c2c2f0'])
+plt.title('Subject-wise Marks Distribution')
+plt.show()
