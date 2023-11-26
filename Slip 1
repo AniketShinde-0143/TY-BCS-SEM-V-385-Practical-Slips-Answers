@@ -1,0 +1,140 @@
+Q. 1
+--> <!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Project Management</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dA
+iS6JXm" crossorigin="anonymous">
+<style media="screen">
+body{
+margin-top: 50px;
+}
+h4{
+margin-bottom:20px;
+} .
+box{
+background-color:#00ffff;
+padding:20px;
+} table{
+width:100%;
+} textarea, select, .
+date{
+width: 190px;
+} td{
+padding-bottom: 10px;
+} .
+submit{
+color:#fff;
+background-color:#00FF00;
+border:1px solid #00ff00;
+border-radius: 5px;
+padding:5px;
+margin-right: 20px;
+width:80px;
+} .
+reset{
+color:#fff;
+background-color:#1aa7ec;
+border:1px solid #1aa7ec;
+border-radius: 5px;
+padding:5px;
+width:80px;
+}
+</style>
+</head>
+<body>
+<!--Row Starts-->
+<div class="row justify-content-center">
+<div class="col-6 text-center">
+<h4><u>Project Management</u></h4>
+</div>
+</div>
+<!--Row Ends-->
+<!--Row Starts-->
+<div class="row justify-content-center">
+<!--Box Starts-->
+<div class="col-6 box text-center">
+<form >
+<table>
+<tr>
+<td>Project Name:</td>
+<td><input type="text" name="project-name"></td>
+</tr>
+<tr>
+<td>Assigned to:</td>
+<td>
+<select>
+<option value="Er Merry Petision">Er Merry Petision</option>
+<option value="Er Merry">Er Merry</option>
+<option value="Er Petision">Er Petision</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Start Date:</td>
+<td><input class="date" type="date" name="start-date"></td>
+</tr>
+<tr>
+<td>End Date:</td>
+<td><input class="date" type="date" name="end-date"></td>
+</tr>
+<tr>
+<td>Priority:</td>
+<td>
+<input type="radio" name="priority" value="high"> High
+<input type="radio" name="priority" value="average"> Average
+<input type="radio" name="priority" value="low"> Low
+</td>
+</tr>
+<tr>
+<td>Description:</td>
+<td><textarea name="description"> </textarea></td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="submit" value="Submit" class="submit">
+<input type="reset" value="Clear" class="reset">
+</td>
+</tr>
+</table>
+</form>
+</div>
+<!--Box Ends-->
+</div>
+<!--Row Ends-->
+</body>
+</html>
+
+Q. 2
+
+--> import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv('Iris.csv')
+species_counts = iris_data['Species'].value_counts()
+plt.figure(figsize=(8, 8))
+plt.pie(species_counts, labels=species_counts.index, autopct='%1.1f%%', startangle=90, colors=['#66b3ff', '#99ff99', '#ffcc99'])
+plt.title('Iris Species Distribution')
+plt.show()
+print("\n")
+print("\n")
+
+Q. 3
+
+--> import pandas as pd
+wine_data = pd.read_csv('winequality-red.csv')
+basic_stats = wine_data.describe()
+head_of_data = wine_data.head()
+info_of_data = wine_data.info()
+print("Basic Statistical Details:")
+print(basic_stats)
+print("\nFirst Few Rows of the Dataset:")
+print(head_of_data)
+print("\nInformation about the Dataset:")
+print(info_of_data)
