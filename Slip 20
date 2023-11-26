@@ -1,0 +1,100 @@
+Q. 1
+
+--> <html>
+<body>
+<form action="slip-20a.php" method="post">
+<h2>Enter choice :</h2>
+<input type="radio" name="ch" value=1> Split an array into chunks<br>
+<input type="radio" name="ch" value=2> Sort array by values without changing key values <br>
+<input type="radio" name="ch" value=3> Filter even elements from array <br>
+<br>
+<input type="submit" value="SUBMIT"> <input type="reset" value="CLEAR">
+</body>
+</html>
+slip-20a.php
+<html>
+<body>
+<?php
+function is_even($var)
+{ if($var%2==0)
+return $var;
+}
+$choice=$_POST['ch'];
+$arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5,'f'=>6,'g'=>7,'h'=>8);
+switch($choice)
+{
+case 1:
+echo "Original array:<br>";
+echo $arr;
+echo "Split array:<br>";
+print_r(array_chunk($arr,2));
+break;
+case 2:
+asort($arr);
+echo "Array in ascending order:<br>";
+print_r($arr);
+arsort($arr);
+echo "<br>Array in descending order:<br>";
+print_r($arr);
+break;
+case 3:
+print_r(array_filter($arr,'is_even'));
+break;
+}
+echo "<br><br><a href ='slip-20.html'> RETURN</a>";
+?>
+</font>
+</body>
+</html>
+
+Q. 2
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+# Generate a random array of 50 integers
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+# Plotting a Line Chart
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 4, 1)
+plt.plot(random_data, color='blue', marker='o', linestyle='-', linewidth=2)
+plt.title('Line Chart')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Scatter Plot
+plt.subplot(1, 4, 2)
+plt.scatter(range(len(random_data)), random_data, color='green', marker='o')
+plt.title('Scatter Plot')
+plt.xlabel('Index')
+plt.ylabel('Value')
+# Plotting a Histogram
+plt.subplot(1, 4, 3)
+plt.hist(random_data, bins=10, color='orange', edgecolor='black')
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+# Plotting a Box Plot
+plt.subplot(1, 4, 4)
+plt.boxplot(random_data, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot')
+# Adjust layout
+plt.tight_layout()
+# Show the plots
+plt.show()
+
+Q. 3
+
+--> import numpy as np
+import matplotlib.pyplot as plt
+# Generate a random array of 50 integers
+np.random.seed(42)  # Set seed for reproducibility
+random_data = np.random.randint(0, 100, size=50)
+# Add two outliers
+outliers = [150, 160]
+random_data_with_outliers = np.concatenate([random_data, outliers])
+# Plotting a Box Plot with outliers
+plt.figure(figsize=(6, 4))
+plt.boxplot(random_data_with_outliers, vert=False, widths=0.7, patch_artist=True, boxprops=dict(facecolor='pink'))
+plt.title('Box Plot with Outliers')
+# Show the plot
+plt.show()
