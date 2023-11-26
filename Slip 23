@@ -1,0 +1,86 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<h2>Stack Operations</h2>
+<script>
+    const stack = [];
+    function insertElement() {
+        const element = prompt('Enter the element to insert:');
+        stack.push(element);
+        alert(`Element "${element}" inserted into the stack.`);
+    }
+    function deleteElement() {
+        if (stack.length === 0) {
+            alert('Stack is empty. Cannot delete.');
+        } else {
+            const deletedElement = stack.pop();
+            alert(`Element "${deletedElement}" deleted from the stack.`);
+        }
+    }
+    function displayStack() {
+        if (stack.length === 0) {
+            alert('Stack is empty.');
+        } else {
+            const stackContent = stack.join(' -> ');
+            alert(`Stack: ${stackContent}`);
+        }
+    }
+</script>
+<button onclick="insertElement()">Insert Element</button>
+<button onclick="deleteElement()">Delete Element</button>
+<button onclick="displayStack()">Display Stack</button>
+</body>
+</html>
+
+Q. 2
+
+-->import pandas as pd
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, Binarizer
+
+# Load the wine quality dataset from a CSV file
+wine_data = pd.read_csv('winequality-red.csv')
+
+# Extract the features (excluding the target variable 'quality')
+features = wine_data.drop('quality', axis=1)
+
+# Task a: Rescaling using MinMaxScaler
+min_max_scaler = MinMaxScaler()
+rescaled_data = min_max_scaler.fit_transform(features)
+rescaled_df = pd.DataFrame(rescaled_data, columns=features.columns)
+
+# Task b: Standardizing using StandardScaler
+standard_scaler = StandardScaler()
+standardized_data = standard_scaler.fit_transform(features)
+standardized_df = pd.DataFrame(standardized_data, columns=features.columns)
+
+# Task c: Binarizing using Binarizer
+binarizer = Binarizer(threshold=0.5)  # You can adjust the threshold as needed
+binarized_data = binarizer.transform(features)
+binarized_df = pd.DataFrame(binarized_data, columns=features.columns)
+
+# Displaying the results
+print("Original Data:")
+print(features.head())
+
+print("\nRescaled Data:")
+print(rescaled_df.head())
+
+print("\nStandardized Data:")
+print(standardized_df.head())
+
+print("\nBinarized Data:")
+print(binarized_df.head())
