@@ -1,0 +1,78 @@
+Q. 1
+
+--> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chess Board</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+}
+table {
+border-collapse: collapse;
+margin: 20px auto;
+}
+td{ width: 50px;
+height: 50px;
+text-align: center;
+}
+.white {
+background-color: #fff;
+}
+.black {
+background-color: #000;
+}
+</style>
+</head>
+<body>
+<table border="1">
+<?php
+for ($row = 1; $row <= 8; $row++) {
+echo '<tr>';
+for ($col = 1; $col <= 8; $col++) {
+$cellColor = ($row + $col) % 2 === 0 ? 'white' : 'black';
+echo '<td class="' . $cellColor . '"></td>';
+}
+echo '</tr>';
+}
+?>
+</table>
+</body>
+</html>
+
+Q. 2
+
+--> import pandas as pd
+import matplotlib.pyplot as plt
+# Load the Iris dataset from the CSV file
+iris_data = pd.read_csv('Iris.csv')
+# Plotting a Scatter Plot
+plt.figure(figsize=(8, 6))
+plt.scatter(iris_data['PetalLengthCm'], iris_data['PetalWidthCm'], color='purple', marker='o')
+plt.title('Relationship between Petal Length and Petal Width')
+plt.xlabel('Petal Length (cm)')
+plt.ylabel('Petal Width (cm)')
+plt.grid(True)
+plt.show()
+
+Q. 3
+
+--> import numpy as np
+# Create a 2D array
+array_2d = np.array([[1, 5, 3],
+                    [7, 2, 8],
+                    [4, 6, 9]])
+# Flatten the array
+flattened_array = array_2d.flatten()
+# Find the maximum and minimum values
+max_value = np.max(flattened_array)
+min_value = np.min(flattened_array)
+# Display the results
+print("Original 2D array:")
+print(array_2d)
+print("\nFlattened array:")
+print(flattened_array)
+print("\nMaximum value in the flattened array:", max_value)
+print("Minimum value in the flattened array:", min_value)
